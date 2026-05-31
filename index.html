@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahongir & Sabina | Taklifnoma</title>
+    <meta property="og:title" content="Jahongir & Sabina - To'y Taklifnomasi">
+    <meta property="og:description" content="Sizni hayotimizdagi eng muhim kun - to'y marosimimizga taklif qilamiz!">
+    <meta property="og:image" content="kelin-kuyov.jpg">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #997a00;
+            --bg-color: #0d0d0d;
+            --surface: rgba(20, 20, 20, 0.6);
+            --text: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        h1,
+        h2,
+        h3,
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+
+        /* Welcome Screen */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('photo1.jpg') center/cover no-repeat;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease;
+        }
+
+        .welcome-content {
+            text-align: center;
+            animation: fadeIn 2s ease;
+        }
+
+        #open-invitation {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        #open-invitation:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* Hero Section */
+          .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(13, 13, 13, 0.9) 100%), url('photo.jpg') center/cover no-repeat fixed;
+            background-color: #111;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(13, 13, 13, 0.9) 100%);
+            z-index: -1;
+        }
+        .hero-content {
+            z-index: 1;
+            padding: 20px;
+            animation: fadeIn 2s ease-out forwards;
+            opacity: 0;
+        }
+
+
+        .bismillah {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: white;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .names {
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            color: #fff;
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .names .amp {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--gold);
+            font-style: italic;
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .hero-date {
+            margin-top: 40px;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            font-weight: 300;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 15px 0;
+            display: inline-block;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 1s forwards;
+        }
+
+        .mouse {
+            width: 24px;
+            height: 36px;
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .wheel {
+            width: 2px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 2px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 1.5s infinite;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px auto 0;
+            opacity: 0.5;
+        }
+
+        /* Countdown */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .count-box {
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 30px 20px;
+            min-width: 130px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .count-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .count-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .count-text {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+
+        /* Location */
+        .location-wrapper {
+            background: var(--surface);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 350px;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: invert(90%) hue-rotate(180deg) contrast(100%);
+            /* Dark map trick */
+        }
+
+        .location-info {
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .venue-name {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .info-item i {
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+
+        .btn-route {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 15px 35px;
+            background: transparent;
+            color: var(--gold);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-route::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            z-index: -1;
+            transition: transform 0.4s ease;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        .btn-route:hover {
+            color: #000;
+        }
+
+        .btn-route:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Quote */
+        .quote-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, var(--bg-color) 0%, rgba(20, 20, 20, 0.8) 50%, var(--bg-color) 100%);
+        }
+
+        .quote-icon {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .quote-text {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .welcome-title {
+            color: var(--gold);
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .invitation-title {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .invitation-body {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            font-style: normal;
+            color: var(--text);
+        }
+
+        .invitation-body p {
+            margin-bottom: 20px;
+        }
+
+        .invitation-signature {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            margin-top: 40px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px 100px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-names {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+
+        .footer-date {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, 15px);
+                opacity: 0;
+            }
+        }
+
+
+
+        /* Reveal Animation Class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .count-box {
+                min-width: calc(50% - 10px);
+                padding: 20px 10px;
+            }
+
+            .count-num {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .quote-text {
+                font-size: 1.8rem;
+            }
+
+            .location-info {
+                padding: 30px 20px;
+            }
+
+            .names {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .names .amp {
+                margin: 10px 0;
+            }
+
+            .welcome-title { font-size: 2.2rem; }
+            .invitation-title { font-size: 2.2rem; }
+            .invitation-body { font-size: 1.2rem; }
+            .invitation-signature { font-size: 0.9rem; letter-spacing: 2px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen">
+        <div class="welcome-content">
+            <h2 class="serif welcome-title">Jahongir & Sabina</h2>
+            <button id="open-invitation">Taklifnomani ochish</button>
+        </div>
+    </div>
+
+    <!-- Background Music (Local) -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="bismillah"> <b>"Alloh ularni qalblarini sevgi ila birlashtirdi"</b></div>
+            <div class="bismillah">" (Anfol surasi 63-oyat)"</div>
+            <h1 class="names">
+                Jahongir <span class="amp">&</span> Sabina
+            </h1>
+            <div class="hero-date">13 Iyun 2026 • Soat 19:00</div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Pastga</span>
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Quote Section -->
+    <div class="quote-section">
+        <i class="fas fa-heart quote-icon reveal" style="margin-bottom: 30px;"></i>
+        <h2 class="serif reveal invitation-title">
+            Aziz va qadrli mehmonlarimiz!
+        </h2>
+        <div class="quote-text serif reveal invitation-body">
+            <p>
+                Hayotimizdagi eng quvonchli kunlardan biri yaqinlashmoqda va bu baxtli lahzalarni siz bilan birga baham ko'rishni istaymiz.
+            </p>
+            <p>
+                Sizni nikoh to'yimizga samimiy taklif etamiz.
+            </p>
+            <p>
+                Quvonchli kunimizda aziz mehmonimiz bo'lishingizni intiqlik bilan kutamiz.
+            </p>
+            <p class="invitation-signature">
+                Hurmat va ehtirom ila<br><br>Ostonovlar va Samadovlar oilasi
+            </p>
+        </div>
+    </div>
+    <!-- Countdown Section -->
+    <!-- Location Section -->
+    <section class="location-section">
+        <h2 class="section-title reveal">Manzil</h2>
+
+        <div class="location-wrapper reveal">
+
+            <div class="location-info">
+                <h3 class="venue-name serif"> Istiqlol To'yxonasi</h3>
+
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Navoiy viloyati, Qiziltepa tumani</span>
+                </div>
+
+                <div class="info-item">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>13 Iyun 2026-yil, Shanba</span>
+                </div>
+
+                <div class="info-item">
+                    <i class="far fa-clock"></i>
+                    <span>Soat 19:00</span>
+                </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps?q=40.039236,64.843761&hl=uz&z=16&output=embed"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=40.039236,64.843761" target="_blank"
+                    class="btn-route">
+                    <i class="fas fa-location-arrow"></i> Yo'lni ochish
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="countdown-section">
+        <h2 class="section-title reveal">To'ygacha qoldi</h2>
+        <div class="countdown-container reveal">
+            <div class="count-box">
+                <div class="count-num" id="days">00</div>
+                <div class="count-text">Kun</div>
+            </div>
+            <div class="count-box">
+                <div class="count-num" id="hours">00</div>
+                <div class="count-text">Soat</div>
+            </div>
+            <div class="count-box">
+                <div class="count-num" id="minutes">00</div>
+                <div class="count-text">Daqiqa</div>
+            </div>
+            <div class="count-box">
+                <div class="count-num" id="seconds">00</div>
+                <div class="count-text">Soniya</div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <h2 class="footer-names serif">Jahongir & Sabina</h2>
+        <div class="footer-date">13.06.2026</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Countdown Logic
+        const targetDate = new Date('2026-06-13T19:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                // To'y boshlandi yoki o'tdi
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 2. Welcome Screen & Music Logic
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const openBtn = document.getElementById('open-invitation');
+        const music = document.getElementById('bg-music');
+
+        openBtn.addEventListener('click', () => {
+            // Musiqani chalish
+            music.play().catch(e => console.log("Musiqa xatosi:", e));
+
+            // Ekranni yo'qotish
+            welcomeScreen.style.opacity = '0';
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+            }, 1000);
+        });
+
+        // 3. Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', reveal);
+        // Trigger initially
+        reveal();
+    </script>
+</body>
+
+</html>```
